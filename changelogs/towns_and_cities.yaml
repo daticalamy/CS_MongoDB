@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: asmith
+      comment: create_collection_comment
+      changes:
+        - createCollection:
+            collectionName: towns
+      rollback:
+        - dropCollection:
+            collectionName: towns
+            
+  - changeSet:
+      id: 2
+      author: asmith
+      comment: auto rollback for cities collection
+      changes:
+        - createCollection:
+            collectionName: cities

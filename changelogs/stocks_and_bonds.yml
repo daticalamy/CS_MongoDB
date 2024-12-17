@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: asmith
+      comment: add stocks collection
+      runWith: mongosh
+      changes:
+        - mongoFile:
+            dbms: mongodb
+            path: "../scripts/create-collection-stocks.js"
+            relativeToChangelogFile: true
+      rollback:
+        - mongoFile:
+            path: "../scripts/create-collection-stocks-rollback.js"
+            relativeToChangelogFile: true
+            
+  - changeSet:
+      id: 2
+      author: asmith
+      comment: add bonds collection
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: |-
+              db.createCollection(
+                "bonds",
+                { clusteredIndex: { "key": { _id: 1 }, "unique": true, "name": "bonds clustered key" } }
+              )
+      rollback:
+        - mongo:
+            mongo: "db.bonds.drop()"

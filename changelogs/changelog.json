@@ -1,0 +1,28 @@
+{
+    "databaseChangeLog": 
+    [
+        {
+            "changeSet": {
+                "id": "create_students-collection",
+                "author": "pj",
+                "runWith": "mongosh",
+                "changes": [
+                  {
+                    "mongoFile": {
+                      "dbms": "mongodb",
+                      "path": "../scripts/insert-students.js",
+                      "relativeToChangelogFile": true
+                    }
+                  }
+                  ],       
+                "rollback": [
+                    {
+                      "mongo": {
+                        "mongo": "db.students.drop()"
+                      }
+                    }
+                ]
+            }    
+        }
+    ]
+}

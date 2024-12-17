@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: asmith
+      comment: add students with schema validation
+      runWith: mongosh
+      changes:
+        - mongoFile:
+            dbms: mongodb
+            path: "../scripts/create-collection-students2.js"
+            relativeToChangelogFile: true
+      rollback:
+        - mongoFile:
+            path: "../scripts/create-collection-students2-rollback.js"
+            relativeToChangelogFile: true
+            
+  - changeSet:
+      id: 2
+      author: asmith
+      comment: add student 2 data
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: |-
+              db.students2.insertOne( {
+                   name: "Alice",
+                   year: Int32( 2019 ),
+                   major: "History",
+                   gpa: Int32(3),
+                   address: {
+                      city: "NYC",
+                      street: "33rd Street"
+                   }
+                } )

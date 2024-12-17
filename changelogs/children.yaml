@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: children
+      author: asmith
+      changes:
+        - insertMany:
+            collectionName: children
+            documents: |           
+                [
+                  {
+                    "index": NumberInt(0),
+                    "name": "Little Alicia",
+                    "isActive": false,
+                    "registered": ISODate("2013-10-01T00:00:00.000Z"),
+                    "age": NumberInt(7),
+                    "gender": "female",
+                    "eyeColor": "green",
+                    "favoriteFruit": "banana"
+                    }
+                ]
+        - rollback:
+            runCommand:
+              command: |
+                {
+                  delete: "children",
+                  deletes: [ { q: { }, limit: 0 } ]
+                }

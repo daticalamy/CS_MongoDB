@@ -1,0 +1,106 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: "loki"
+      changes:
+        - createCollection:
+            collectionName: "dpe_rr_1"
+  
+  - changeSet:
+      id: "2"
+      author: "loki"
+      changes:
+        - runCommand:
+            command: "{ create: 'dpe_rr' }"
+      rollback:
+        - runCommand:
+            command: "{ drop: 'dpe_rr' }"
+  
+  - changeSet:
+      id: "3"
+      author: "loki"
+      changes:
+        - runCommand:
+            command: "{ create: 'dpe_rr_2' }"
+      rollback:
+        - runCommand:
+            command: "{ drop: 'dpe_rr_2' }"
+  
+  - changeSet:
+      id: "4"
+      author: "loki"
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: "db.createCollection('person')"
+            dbms: mongodb
+        - rollback:
+            mongo:
+              mongo: "db.person.drop()"
+
+  - changeSet:
+      id: 5
+      author: asmith
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: |-
+              db.runCommand({ create: 'dpe_rr_3' })
+      rollback:
+        - mongo:
+            mongo: |-
+              db.runCommand({ drop: 'dpe_rr_3' })
+
+  - changeSet:
+      id: 6
+      author: asmith
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: |-
+              db.runCommand({ create: 'dpe_rr_4' })
+      rollback:
+        - mongo:
+            mongo: |-
+              db.runCommand({ drop: 'dpe_rr_4' })
+              
+  - changeSet:
+      id: "sample_1"
+      author: "asmith"
+      changes:
+        - createCollection:
+            collectionName: "sample_collection1"
+
+  - changeSet:
+      id: "sample_2"
+      author: "asmith"
+      changes:
+        - runCommand:
+            command: "{ create: 'sample_collection2' }"
+      rollback:
+        - runCommand:
+            command: "{ drop: 'sample_collection2' }"
+            
+  - changeSet:
+      id: "sample_3"
+      author: "asmith"
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: "db.createCollection('sample_collection3')"
+            dbms: mongodb
+        - rollback:
+            mongo:
+              mongo: "db.sample_collection3.drop()"
+
+  - changeSet:
+      id: "sample_4"
+      author: "asmith"
+      runWith: mongosh
+      changes:
+        - mongo:
+            mongo: "db.createCollection('sample_collection4')"
+            dbms: mongodb
+        - rollback:
+            mongo:
+              mongo: "db.sample_collection4.drop()"

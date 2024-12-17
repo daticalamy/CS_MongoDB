@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: persons-index
+      author: asmith
+      changes:
+        - createIndex:
+            collectionName: persons
+            keys: '{ name: 1, type: 1}'
+            options: '{unique: true, name: "ui_persons"}'
+        - rollback:
+            dropIndex:
+              collectionName: persons
+              keys: '{ name: 1, type: 1}'
+              
+  - changeSet:
+      id: sample_1-index
+      author: asmith
+      changes:
+        - createIndex:
+            collectionName: sample_1
+            keys: '{ name: 1, type: 1}'
+            options: '{unique: true, name: "ui_sample1"}'
+        - rollback:
+            dropIndex:
+              collectionName: sample_1
+              keys: '{ name: 1, type: 1}'

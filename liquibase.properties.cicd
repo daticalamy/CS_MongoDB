@@ -1,0 +1,31 @@
+changeLogFile: changelog.yaml
+
+#-------------------------------------------------------------------------------
+# Connection Properties
+#-------------------------------------------------------------------------------
+# URL Formats:
+#  mongodb://localhost:27017/mydb
+#  mongodb+srv://cluster0.abcd123.mongodb.net/mydb
+
+liquibase.command.url=<LIQUIBASE_COMMAND_URL>
+liquibase.command.username: <LIQUIBASE_COMMAND_USERNAME>
+liquibase.command.password: <LIQUIBASE_COMMAND_PASSWORD>
+
+#-------------------------------------------------------------------------------
+# Logging Properties
+#-------------------------------------------------------------------------------
+liquibase.logFormat=JSON_PRETTY
+liquibase.logFile=logs/log.json
+logLevel: INFO
+liquibase.showBanner: false
+
+#-------------------------------------------------------------------------------
+# Reports Properties
+#-------------------------------------------------------------------------------
+liquibase.reports.enabled=true
+liquibase.reports.path=reports
+
+#-------------------------------------------------------------------------------
+# Checks Properties
+#-------------------------------------------------------------------------------
+liquibase.command.autoUpdate=off
