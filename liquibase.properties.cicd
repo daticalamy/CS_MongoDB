@@ -12,11 +12,23 @@ liquibase.command.username: <LIQUIBASE_COMMAND_USERNAME>
 liquibase.command.password: <LIQUIBASE_COMMAND_PASSWORD>
 
 #-------------------------------------------------------------------------------
+# Reference Database
+#-------------------------------------------------------------------------------
+liquibase.command.referenceUrl: <LIQUIBASE_COMMAND_REFERENCE_URL>
+liquibase.command.referenceUsername: <LIQUIBASE_COMMAND_REFERENCE_USERNAME>
+liquibase.command.referencePassword: <LIQUIBASE_COMMAND_REFERENCE_PASSWORD>
+
+#-------------------------------------------------------------------------------
+# Reference Snapshot
+#-------------------------------------------------------------------------------
+#liquibase.command.referenceUrl: offline:mongodb?snapshot=snapshots/mySnapshot.yaml
+
+#-------------------------------------------------------------------------------
 # Logging Properties
 #-------------------------------------------------------------------------------
 liquibase.logFormat=JSON_PRETTY
 liquibase.logFile=logs/log.json
-logLevel: INFO
+liquibase.logLevel=INFO
 liquibase.showBanner: false
 
 #-------------------------------------------------------------------------------
@@ -29,3 +41,8 @@ liquibase.reports.path=reports
 # Checks Properties
 #-------------------------------------------------------------------------------
 liquibase.command.autoUpdate=off
+
+#-------------------------------------------------------------------------------
+# History table
+#-------------------------------------------------------------------------------
+liquibase.dbclhistory.enabled: true
