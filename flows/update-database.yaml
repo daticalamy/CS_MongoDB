@@ -1,0 +1,18 @@
+stages:
+
+  Update-Database:
+    actions:
+    
+  # Show Status
+    - type: liquibase
+      command: status
+      cmdArgs: {verbose: true}
+
+  # Tag DB
+    - type: liquibase
+      command: tag
+      cmdArgs: {tag: 1.4.0}
+      
+  # Update with rollback test
+    - type: liquibase
+      command: update-testing-rollback

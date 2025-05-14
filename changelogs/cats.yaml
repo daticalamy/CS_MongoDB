@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: tagDatabase-cats
+      author: asmith
+      changes:
+        - tagDatabase:
+            tag: v1.2.9
+
+  - changeSet:
+      id: cats
+      author: asmith
+      changes:
+        - insertMany:
+            collectionName: cats
+            documents: |           
+                [
+                  {
+                    "index": NumberInt(0),
+                    "name": "Garfield",
+                    "isActive": false,
+                    "registered": ISODate("2013-10-01T00:00:00.000Z"),
+                    "age": NumberInt(20),
+                    "gender": "female",
+                    "eyeColor": "green",
+                    "favoriteFood": "Catnip",
+                    "tags": [
+                      "enim",
+                      "id",
+                      "velit",
+                      "ad",
+                      "consequat"
+                    ]
+                  }
+                ]
+        - rollback:
+            runCommand:
+              command: |
+                {
+                  delete: "cats",
+                  deletes: [ { q: { }, limit: 0 } ]
+                }

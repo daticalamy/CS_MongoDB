@@ -5,4 +5,4 @@
 
 db.createCollection('customers5');
 
-// rollback db = db.customers5.drop()
+// rollback db.customers5.drop()
